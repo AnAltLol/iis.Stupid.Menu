@@ -17,7 +17,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using Valve.VR;
@@ -35,15 +34,15 @@ namespace iiMenu.Menu
             try
             {
                 bool dropOnRemove = true;
-                bool isKeyboardCondition = UnityInput.Current.GetKey(KeyCode.Q);
-                bool buttonCondition = ControllerInputPoller.instance.leftControllerSecondaryButton;
+                bool isKeyboardCondition = UnityInput.Current.GetKey(KeyCode.Q) && HarmonyPatches.iinRoom;
+                bool buttonCondition = ControllerInputPoller.instance.leftControllerSecondaryButton && HarmonyPatches.iinRoom;
                 if (rightHand)
                 {
-                    buttonCondition = ControllerInputPoller.instance.rightControllerSecondaryButton;
+                    buttonCondition = ControllerInputPoller.instance.rightControllerSecondaryButton && HarmonyPatches.iinRoom;
                 }
                 if (bothHands)
                 {
-                    buttonCondition = ControllerInputPoller.instance.leftControllerSecondaryButton || ControllerInputPoller.instance.rightControllerSecondaryButton;
+                    buttonCondition = (ControllerInputPoller.instance.leftControllerSecondaryButton || ControllerInputPoller.instance.rightControllerSecondaryButton) && HarmonyPatches.iinRoom;
                 }
                 if (wristThing)
                 {
@@ -58,7 +57,7 @@ namespace iiMenu.Menu
                     }
                     lastChecker = fuck;
 
-                    buttonCondition = wristOpen;
+                    buttonCondition = wristOpen && HarmonyPatches.iinRoom;
                 }
                 if (joystickMenu)
                 {
@@ -71,13 +70,13 @@ namespace iiMenu.Menu
                     }
                     lastChecker = fuck;
 
-                    buttonCondition = joystickOpen;
+                    buttonCondition = joystickOpen && HarmonyPatches.iinRoom;
                 } else
                 {
                     joystickButtonSelected = 0;
                 }
-                buttonCondition = buttonCondition || isKeyboardCondition;
-                buttonCondition = buttonCondition && !lockdown;
+                buttonCondition = (buttonCondition || isKeyboardCondition) && HarmonyPatches.iinRoom;
+                buttonCondition = (buttonCondition && !lockdown) && HarmonyPatches.iinRoom;
                 if (buttonCondition && menu == null)
                 {
                     Draw();

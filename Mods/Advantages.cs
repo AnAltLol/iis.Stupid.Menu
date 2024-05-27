@@ -2,10 +2,9 @@
 using iiMenu.Classes;
 using iiMenu.Notifications;
 using Photon.Pun;
-using System;
 using UnityEngine;
-using Valve.VR;
 using UnityEngine.InputSystem;
+using Valve.VR;
 using static iiMenu.Menu.Main;
 
 namespace iiMenu.Mods

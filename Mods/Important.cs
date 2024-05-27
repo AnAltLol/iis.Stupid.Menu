@@ -5,8 +5,8 @@ using System.Diagnostics;
 using UnityEngine;
 using static iiMenu.Menu.Main;
 using static iiMenu.Mods.Reconnect;
-using Valve.VR;
 using Cinemachine;
+using Valve.VR;
 
 namespace iiMenu.Mods
 {
